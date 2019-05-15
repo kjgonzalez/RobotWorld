@@ -31,4 +31,15 @@ general:
 objective for june 13: 
 have a level that showcases character movement abilities, including jump, double jump, wall jump, wall slide, and ceiling climb
 
+GOALS FOR NEXT MEETING: 
+next meeting date: june 13
+goals: 
+1. movement showcase levels
+    includes: jump, 2x jump, wall jump, wall slide, ceiling climb
+2. ability to take damage
+3. energy cost / regeneration
 
+notes:
+* create level in unity
+* no fall damage
+* see other game mechanics above
