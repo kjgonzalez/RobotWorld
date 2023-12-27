@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://dy63ifw0f3c2i"]
+
+[ext_resource type="Script" path="res://scripts/goomba.gd" id="1_cdcvh"]
+[ext_resource type="Texture2D" uid="uid://by54f6pnbq4qr" path="res://assets/enemy_ground.png" id="2_ygsgo"]
+[ext_resource type="PackedScene" uid="uid://8vep7kd1h5t3" path="res://scenes/hpbar.tscn" id="3_753pc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43fvx"]
+size = Vector2(49.4419, 46.4804)
+
+[node name="goomba" type="CharacterBody2D"]
+script = ExtResource("1_cdcvh")
+
+[node name="EnemyGround" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("2_ygsgo")
+flip_h = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_43fvx")
+
+[node name="ray_endofworld" type="RayCast2D" parent="."]
+position = Vector2(25.7162, 16.6589)
+target_position = Vector2(0, 20)
+
+[node name="hpbar" parent="." instance=ExtResource("3_753pc")]
+position = Vector2(0, -33)
+scale = Vector2(0.5, 0.5)

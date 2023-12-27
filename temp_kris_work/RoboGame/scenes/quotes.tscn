@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dtmp61d6auf73"]
+
+[node name="quotes" type="TextEdit"]
+visible = false
+offset_right = 8.0
+offset_bottom = 8.0
+text = "heyo!
+nice!
+well then..."

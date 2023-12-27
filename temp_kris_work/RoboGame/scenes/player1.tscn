@@ -1,0 +1,49 @@
+[gd_scene load_steps=7 format=3 uid="uid://b4mc5qq40d3tn"]
+
+[ext_resource type="Script" path="res://scripts/player.gd" id="1_x4d0m"]
+[ext_resource type="Texture2D" uid="uid://ssqr6yin4t3r" path="res://assets/player_arm.png" id="2_50bbj"]
+[ext_resource type="Script" path="res://scripts/player_arm.gd" id="3_oo2fe"]
+[ext_resource type="Texture2D" uid="uid://b1cvas70t8qi1" path="res://assets/player_body_only.png" id="4_1tt52"]
+[ext_resource type="PackedScene" uid="uid://8vep7kd1h5t3" path="res://scenes/hpbar.tscn" id="5_klg7c"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6yygl"]
+size = Vector2(30, 62)
+
+[node name="player" type="CharacterBody2D"]
+floor_constant_speed = true
+floor_snap_length = 10.0
+script = ExtResource("1_x4d0m")
+
+[node name="player_arm" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+rotation = -0.769797
+texture = ExtResource("2_50bbj")
+centered = false
+offset = Vector2(-10, -11)
+script = ExtResource("3_oo2fe")
+
+[node name="PlayerSprite" type="Sprite2D" parent="."]
+texture = ExtResource("4_1tt52")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_6yygl")
+
+[node name="heightRayL" type="RayCast2D" parent="."]
+position = Vector2(-15, 31)
+target_position = Vector2(0, 500)
+
+[node name="heightRayR" type="RayCast2D" parent="."]
+position = Vector2(15, 31)
+target_position = Vector2(0, 500)
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(0, 31)
+
+[node name="hpbar" parent="." instance=ExtResource("5_klg7c")]
+visible = false
+position = Vector2(0, -39)
+scale = Vector2(0.5, 0.5)
+
+[node name="cam_player" type="Camera2D" parent="."]
+drag_horizontal_enabled = true
+drag_vertical_enabled = true

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://8sbreenasm0r"]
+
+[ext_resource type="Texture2D" uid="uid://73ji1jq0i3vr" path="res://assets/upgrade glow.png" id="1_yrmyq"]
+[ext_resource type="Texture2D" uid="uid://itevydmo8ahg" path="res://assets/item_grapplinghook.png" id="2_4mcdg"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_15pbl"]
+radius = 52.6873
+
+[node name="upgrade_hook" type="Area2D"]
+scale = Vector2(0.55, 0.55)
+
+[node name="UpgradeGlow" type="Sprite2D" parent="."]
+position = Vector2(1.98023, -2.37301)
+scale = Vector2(2.06758, 2.06758)
+texture = ExtResource("1_yrmyq")
+
+[node name="ItemGrapplinghook" type="Sprite2D" parent="."]
+position = Vector2(-0.844147, 1.34326)
+texture = ExtResource("2_4mcdg")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_15pbl")

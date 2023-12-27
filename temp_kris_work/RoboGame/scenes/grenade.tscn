@@ -1,0 +1,33 @@
+[gd_scene load_steps=6 format=3 uid="uid://de1byhnhnckj8"]
+
+[ext_resource type="Texture2D" uid="uid://d1by66swj2ipt" path="res://assets/grenade.png" id="1_kx7mc"]
+[ext_resource type="Script" path="res://scripts/grenade.gd" id="1_yoljq"]
+[ext_resource type="AudioStream" uid="uid://ios18i80wd4e" path="res://assets/grenade_launch.mp3" id="3_g87u1"]
+[ext_resource type="AudioStream" uid="uid://d2uicb11iylyb" path="res://assets/grenade_explode.mp3" id="4_ix275"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_1s8lx"]
+radius = 13.5
+
+[node name="grenade" type="RigidBody2D"]
+script = ExtResource("1_yoljq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_1s8lx")
+
+[node name="Grenade" type="Sprite2D" parent="."]
+scale = Vector2(0.157, 0.157)
+texture = ExtResource("1_kx7mc")
+
+[node name="explode_time" type="Timer" parent="."]
+wait_time = 3.0
+one_shot = true
+autostart = true
+
+[node name="sound_launch" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_g87u1")
+
+[node name="sound_explode" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_ix275")
+
+[connection signal="timeout" from="explode_time" to="." method="_on_explode_time_timeout"]
+[connection signal="finished" from="sound_explode" to="." method="_on_sound_explode_finished"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://8vep7kd1h5t3"]
+
+[ext_resource type="Script" path="res://scripts/hpbar.gd" id="1_7kwhx"]
+[ext_resource type="Texture2D" uid="uid://dx3d1mgvfq1mu" path="res://assets/square_red.png" id="1_s3ydd"]
+[ext_resource type="Texture2D" uid="uid://dao515ub4rqy" path="res://assets/square_green.png" id="2_qar8p"]
+
+[node name="hpbar" type="Node2D"]
+script = ExtResource("1_7kwhx")
+
+[node name="SquareRed" type="Sprite2D" parent="."]
+position = Vector2(-50, 0)
+scale = Vector2(1, 0.1)
+texture = ExtResource("1_s3ydd")
+centered = false
+offset = Vector2(0, -50)
+
+[node name="SquareGreen" type="Sprite2D" parent="."]
+position = Vector2(-50, 0)
+scale = Vector2(1, 0.1)
+texture = ExtResource("2_qar8p")
+centered = false
+offset = Vector2(0, -50)
