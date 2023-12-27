@@ -1,9 +1,5 @@
-# HelloGame
-working name. the ball is rolling.
+# RobotWorld
+A metroidvania platformer to save your robot home.
 
-
-
-
-
-
-kjg190503: test on pc1
+# Links
+Trello Board, "Game Making": https://trello.com/b/QRmXVy7J/games
