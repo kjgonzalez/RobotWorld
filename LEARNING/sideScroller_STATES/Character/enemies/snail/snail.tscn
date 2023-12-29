@@ -1,0 +1,179 @@
+[gd_scene load_steps=18 format=3 uid="uid://c16hwa162l46r"]
+
+[ext_resource type="Texture2D" uid="uid://cxij3cdd4xf4t" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Snail/Dead-Sheet.png" id="1_bjos2"]
+[ext_resource type="Texture2D" uid="uid://dpii7hugyoc76" path="res://Art/Legacy-Fantasy - High Forest 2.3/Mob/Snail/walk-Sheet.png" id="1_f53nx"]
+[ext_resource type="Script" path="res://Character/enemies/snail/snail.gd" id="1_vyqk6"]
+[ext_resource type="Script" path="res://Character/enemies/snail/Damageable.gd" id="2_vmdp6"]
+[ext_resource type="Script" path="res://Character/CharacterStateMachine.gd" id="4_5plhf"]
+[ext_resource type="Script" path="res://Character/State.gd" id="5_462il"]
+[ext_resource type="Script" path="res://Character/HitState.gd" id="6_2ewvj"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gwjwi"]
+size = Vector2(25, 22)
+
+[sub_resource type="Animation" id="Animation_hogb3"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_vw8dv"]
+resource_name = "dead"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_bjos2")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="Animation" id="Animation_mxx6v"]
+resource_name = "walk"
+length = 0.8
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:texture")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [ExtResource("1_f53nx")]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:hframes")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [8]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6, 7]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b11vh"]
+_data = {
+"RESET": SubResource("Animation_hogb3"),
+"dead": SubResource("Animation_vw8dv"),
+"walk": SubResource("Animation_mxx6v")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_ag66p"]
+animation = &"dead"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_wem2x"]
+animation = &"walk"
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_rhqcy"]
+advance_mode = 2
+
+[sub_resource type="AnimationNodeStateMachineTransition" id="AnimationNodeStateMachineTransition_cjtn2"]
+
+[sub_resource type="AnimationNodeStateMachine" id="AnimationNodeStateMachine_o12dh"]
+states/dead/node = SubResource("AnimationNodeAnimation_ag66p")
+states/dead/position = Vector2(604, 100)
+states/walk/node = SubResource("AnimationNodeAnimation_wem2x")
+states/walk/position = Vector2(421, 100)
+transitions = ["Start", "walk", SubResource("AnimationNodeStateMachineTransition_rhqcy"), "walk", "dead", SubResource("AnimationNodeStateMachineTransition_cjtn2")]
+
+[node name="Snail" type="CharacterBody2D"]
+script = ExtResource("1_vyqk6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 5)
+shape = SubResource("RectangleShape2D_gwjwi")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_f53nx")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b11vh")
+}
+
+[node name="Damageable" type="Node" parent="."]
+script = ExtResource("2_vmdp6")
+
+[node name="AnimationTree" type="AnimationTree" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_b11vh")
+}
+tree_root = SubResource("AnimationNodeStateMachine_o12dh")
+anim_player = NodePath("../AnimationPlayer")
+
+[node name="CharacterStateMachine" type="Node" parent="." node_paths=PackedStringArray("character", "animation_tree", "current_state")]
+script = ExtResource("4_5plhf")
+character = NodePath("..")
+animation_tree = NodePath("../AnimationTree")
+current_state = NodePath("Walk")
+
+[node name="Walk" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_462il")
+
+[node name="Dead" type="Node" parent="CharacterStateMachine"]
+script = ExtResource("5_462il")
+can_move = false
+
+[node name="Hit" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("damageable", "dead_state")]
+script = ExtResource("6_2ewvj")
+damageable = NodePath("../../Damageable")
+dead_state = NodePath("../Dead")
+
+[connection signal="animation_finished" from="AnimationTree" to="Damageable" method="_on_animation_tree_animation_finished"]
