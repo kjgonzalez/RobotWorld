@@ -19,3 +19,8 @@ Trello Board, "Game Making": https://trello.com/b/QRmXVy7J/games
 * Add Kris test code
 * Add JC test code
 * Create sandbox for group use
+
+#
+created subtree from my own repo:
+use the following to pull any changes (make sure you are in the RobotWorld directory)
+git subtree pull --prefix temp_JC_work https://github.com/twistxj/gameProjects.git main --squash
