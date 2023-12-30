@@ -1,7 +1,7 @@
 extends Node2D
 
-var HPMAX:float = 10
-var hp:float = HPMAX+0
+var HPMAX:int = 10
+var hp:int = HPMAX+0
 
 func init(hpmax):
     HPMAX = hpmax
@@ -9,6 +9,6 @@ func init(hpmax):
 
 func change_hp(amount):
     hp = clamp(hp+amount,0,HPMAX)
-    $SquareGreen.scale.x = hp/HPMAX
+    $SquareGreen.scale.x = float(hp)/float(HPMAX)
     if(hp==HPMAX): visible = false
     else: visible = true

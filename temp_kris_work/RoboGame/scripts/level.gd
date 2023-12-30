@@ -1,18 +1,5 @@
 '''
-will use this script (effectively "main") as primary place to post to-do's:
-
-stat-descrip:
-done proper platform movement (slopes)
-???? x2 jump
-???? wall slide
-???? edge hang
-???? power up: grappling hook
-???? drop thru platform
-???? death if fall
-???? death if hp 0
-???? walking enemy
-???? flying enemy
-???? win condition with level reset
+level 0 / tutorial area. should have all basic actions available
 '''
 
 
@@ -32,10 +19,13 @@ func _process(_delta):
         #var quotes:Array = FileAccess.open(
             #"res://assets/quotes_whenhit.txt", FileAccess.READ).get_as_text().split('\n')
         #print(quotes[randi_range(0,len(quotes)-1)])
-        var thing = JSON.parse_string(FileAccess.open(
-            "res://assets/quotes2.json",FileAccess.READ).get_as_text()
-        )
-        print(thing['a'])
+        #var thing = JSON.parse_string(FileAccess.open(
+            #"res://assets/quotes2.json",FileAccess.READ).get_as_text()
+        #)
+        #print(thing['a'])
+        var val:int = 3
+        print(3/4)
+        print(float(3)/4.0)
 
 func _on_player_p_1_grenade_activated(pos):
     var grenade = scn_grenade.instantiate() as RigidBody2D
@@ -57,7 +47,7 @@ func _on_player_p_1_shoot_activated(pos, dir):
 
 
 func _on_laser_sig_targ_hit(body,laserid):
-    print(body)
+    #print(body)
     if('CharacterBody2D' in str(body)):
         body.change_hp(-1)
     laserid.queue_free()
@@ -66,3 +56,15 @@ func _on_laser_sig_targ_hit(body,laserid):
 func _on_upgrade_hook_body_entered(body):
     if('player' in body.name):
         print("player")
+
+
+
+
+func _on_player_sig_buttonpress(action):
+    ''' return to main menu again '''
+    print(action)
+    if(action=='to_start'):
+        get_tree().change_scene_to_file("res://scenes/screen_startmenu.tscn")
+    if(action=='reset'):
+        get_tree().change_scene_to_file("res://scenes/level.tscn")
+

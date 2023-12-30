@@ -1,10 +1,11 @@
 extends CharacterBody2D
 
 var dir:float = 0
-const SPD_ATTACK = 250.0
+const SPD_ATTACK = 100.0
 const SPD_PATROL = 50
 const R_PATROL = 60
 const JUMP_VELOCITY = -400.0
+const DAMAGE:int = 4
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 @export var info_speed = Vector2.ZERO
@@ -29,7 +30,7 @@ func _ready():
     # set initial target
     targLoc = home+Vector2(R_PATROL,0)
     dir = sign((targLoc-position).x)
-    print('initial dir:',dir)
+    #print('initial dir:',dir)
     state = ST.PATROL
     shape2d.radius = 200
     var alertradius:CollisionShape2D = null
@@ -71,8 +72,9 @@ func process_attack(delta):
     if(minitime<0.5): return # mini "alert!" pause
     var err = targLoc - position
 
-    velocity = min(100,err.length())*(err.normalized())
-    print(velocity.length())
+    velocity = SPD_ATTACK * (err.normalized())
+    #velocity = min(100,err.length()) * (err.normalized())
+    #print(velocity.length())
 
 
 
@@ -100,7 +102,7 @@ func _on_area_2d_body_entered(body):
     ## initialize "attack" state
     targBody = body # will update targLoc in process_attack
     targPrev = targLoc*1
-    print('state:',str(state))
+    #print('state:',str(state))
     minitime = 0
     velocity.x = 0
     velocity.y = 0

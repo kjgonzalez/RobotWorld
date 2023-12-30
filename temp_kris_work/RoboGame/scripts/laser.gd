@@ -7,17 +7,12 @@ var DIRECTION = Vector2(1,0)
 func _ready():
     $sound.play()
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
     pass # todo: process this to make sure moving in correct direction
     position += DIRECTION*SPEED*delta
 
-
 func _on_time_alive_timeout():
-    #print("bye!")
     queue_free()
-
 
 func _on_body_entered(body):
     if('player' in body.name): return

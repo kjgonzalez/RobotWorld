@@ -5,6 +5,7 @@ const JUMP_VELOCITY = -400.0
 var dir = 1
 const HPMAX:float=4
 var hp:float=HPMAX+0
+const DAMAGE:float = 3
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

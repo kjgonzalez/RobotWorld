@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://b4mc5qq40d3tn"]
+[gd_scene load_steps=8 format=3 uid="uid://b4mc5qq40d3tn"]
 
 [ext_resource type="Script" path="res://scripts/player.gd" id="1_x4d0m"]
 [ext_resource type="Texture2D" uid="uid://ssqr6yin4t3r" path="res://assets/player_arm.png" id="2_50bbj"]
@@ -8,6 +8,9 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6yygl"]
 size = Vector2(30, 62)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w4otm"]
+size = Vector2(32, 64)
 
 [node name="player" type="CharacterBody2D"]
 floor_constant_speed = true
@@ -28,14 +31,6 @@ texture = ExtResource("4_1tt52")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_6yygl")
 
-[node name="heightRayL" type="RayCast2D" parent="."]
-position = Vector2(-15, 31)
-target_position = Vector2(0, 500)
-
-[node name="heightRayR" type="RayCast2D" parent="."]
-position = Vector2(15, 31)
-target_position = Vector2(0, 500)
-
 [node name="Marker2D" type="Marker2D" parent="."]
 position = Vector2(0, 31)
 
@@ -45,5 +40,27 @@ position = Vector2(0, -39)
 scale = Vector2(0.5, 0.5)
 
 [node name="cam_player" type="Camera2D" parent="."]
-drag_horizontal_enabled = true
-drag_vertical_enabled = true
+
+[node name="btn_returntostart" type="Button" parent="cam_player"]
+offset_left = -570.0
+offset_top = -320.0
+offset_right = -421.0
+offset_bottom = -288.0
+text = "RETURN TO START"
+
+[node name="btn_reset" type="Button" parent="cam_player"]
+offset_left = -570.0
+offset_top = -270.0
+offset_right = -516.0
+offset_bottom = -238.0
+text = "RESET"
+
+[node name="hitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hitbox"]
+shape = SubResource("RectangleShape2D_w4otm")
+debug_color = Color(0.662745, 0.427451, 0.752941, 0.419608)
+
+[connection signal="pressed" from="cam_player/btn_returntostart" to="." method="_on_btn_returntostart_pressed"]
+[connection signal="pressed" from="cam_player/btn_reset" to="." method="_on_btn_reset_pressed"]
+[connection signal="body_entered" from="hitbox" to="." method="_on_hitbox_body_entered"]
