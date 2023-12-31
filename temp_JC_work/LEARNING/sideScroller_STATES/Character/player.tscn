@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://xxaoff7gwbrm"]
+[gd_scene load_steps=45 format=3 uid="uid://xxaoff7gwbrm"]
 
 [ext_resource type="Script" path="res://Character/player.gd" id="1_flj5s"]
 [ext_resource type="Texture2D" uid="uid://cf5vr3rdkcdr0" path="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Idle/Idle-Sheet.png" id="1_uohqy"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://Character/LandingState.gd" id="10_e7jjg"]
 [ext_resource type="Script" path="res://Character/StateDebugLabel.gd" id="11_xtov4"]
 [ext_resource type="Script" path="res://Character/Sword.gd" id="12_262ii"]
+[ext_resource type="Script" path="res://Character/FacingCollisionShape2D.gd" id="13_8umiu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ry2ya"]
 radius = 9.0
@@ -419,12 +420,13 @@ states/jump_start/position = Vector2(392, -6)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_bjy5n")
 states/move/position = Vector2(392, 100)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_i4ph4"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_2puwh"), "jump_start", "jump_end", SubResource("AnimationNodeStateMachineTransition_50dqq"), "jump_end", "move", SubResource("AnimationNodeStateMachineTransition_3ny4h"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_kd0lq"), "double_jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_8aae2"), "move", "attack1", SubResource("AnimationNodeStateMachineTransition_irodt"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_41st3"), "attack2", "move", SubResource("AnimationNodeStateMachineTransition_vwb5b"), "attack1", "move", SubResource("AnimationNodeStateMachineTransition_k5yoi")]
-graph_offset = Vector2(-155, -15)
+graph_offset = Vector2(-164, -94)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ino3"]
 size = Vector2(24, 64)
 
 [node name="Player" type="CharacterBody2D"]
+collision_layer = 2
 script = ExtResource("1_flj5s")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -461,6 +463,11 @@ air_state = NodePath("../Air")
 jump_animation = "jump_start"
 attack_state = NodePath("../Attack")
 
+[node name="Timer" type="Timer" parent="CharacterStateMachine/Ground"]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
 [node name="Air" type="Node" parent="CharacterStateMachine" node_paths=PackedStringArray("landing_state")]
 script = ExtResource("9_sg48e")
 landing_state = NodePath("../Landing")
@@ -490,12 +497,19 @@ text = "State: "
 script = ExtResource("11_xtov4")
 state_machine = NodePath("../CharacterStateMachine")
 
-[node name="Sword" type="Area2D" parent="."]
+[node name="Sword" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource("12_262ii")
+player = NodePath("..")
+facing_shape = NodePath("CollisionShape2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Sword"]
 position = Vector2(28, -8)
 shape = SubResource("RectangleShape2D_6ino3")
+script = ExtResource("13_8umiu")
+facing_left_position = Vector2(-28, 0)
+facing_right_position = Vector2(28, -8)
 
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Landing" method="_on_animation_tree_animation_finished"]
 [connection signal="animation_finished" from="AnimationTree" to="CharacterStateMachine/Attack" method="_on_animation_tree_animation_finished"]
