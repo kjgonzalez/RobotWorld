@@ -1,5 +1,12 @@
+res://Character/enemies/snail/snail.tscn
+res://Character/enemies/snail/snail.gd
 res://Levels/test_level.tscn
 res://Character/player.tscn
-res://Character/enemies/snail/snail.tscn
 res://UI/health_changed_manager.tscn
 res://UI/health_changed_label.tscn
+res://Character/HitState.gd
+res://Character/Sword.gd
+res://Character/enemies/snail/Damageable.gd
+res://Character/FacingCollisionShape2D.gd
+res://Character/player.gd
+res://Character/GroundState.gd
