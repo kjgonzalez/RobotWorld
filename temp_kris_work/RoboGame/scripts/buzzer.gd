@@ -34,22 +34,10 @@ func _ready():
     state = ST.PATROL
     shape2d.radius = 200
     var alertradius:CollisionShape2D = null
-    #alertradius.shape =
-    #alertradius.
 
-#func process_patrol():
-    #if(abs(home.x-position.x)>R_PATROL):
-        #update_direction()
-        #velocity.x = SPD_PATROL*sign(velocity.x)*-1
-    #else:
-        #velocity.x = SPD_PATROL*dir
-#
-#func process_attack():
-    #print(targBody.position - position) # todo: add chasing behavior / figure out how to go towards enemy
 func update_direction(newdir):
     if(newdir == dir): return
     dir = newdir
-    #print('dir update:',dir)
     scale.x *=-1
     hpbar.scale.x *=-1
 
@@ -122,6 +110,8 @@ func _on_area_2d_body_exited(body):
     #print('state',state)
 
 func change_hp(amount):
+    var abc = 123
+    abc +=1
     $hpbar.change_hp(amount)
     if(hpbar.hp<=0):
         queue_free()

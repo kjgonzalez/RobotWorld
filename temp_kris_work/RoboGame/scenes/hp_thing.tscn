@@ -1,0 +1,27 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1q76ckpengc5"]
+
+[ext_resource type="Texture2D" uid="uid://dx3d1mgvfq1mu" path="res://assets/square_red.png" id="1_7cfyn"]
+[ext_resource type="Script" path="res://scripts/delme_hp_thing.gd" id="1_y8uie"]
+[ext_resource type="Texture2D" uid="uid://bnwsbieieh23h" path="res://assets/billboard.png" id="2_xf36x"]
+[ext_resource type="Texture2D" uid="uid://dao515ub4rqy" path="res://assets/square_green.png" id="3_epiv4"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_y8uie")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+offset_left = 144.326
+offset_top = 171.053
+offset_right = 544.326
+offset_bottom = 211.053
+value = 50.0
+show_percentage = false
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="."]
+offset_left = 3.0
+offset_top = 66.0
+offset_right = 304.0
+offset_bottom = 166.0
+value = 50.0
+texture_under = ExtResource("1_7cfyn")
+texture_over = ExtResource("2_xf36x")
+texture_progress = ExtResource("3_epiv4")
