@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dxhrpur0whr2l"
-path="res://.godot/imported/adventurer-cast-loop-00.png-17035c925a00408c431449b102caa0c3.ctex"
+path="res://.godot/imported/adventurer-cast-loop-00.png-cc283f38661c54ee90c718ba9d5197fd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Adventurer-1.5/Individual Sprites/adventurer-cast-loop-00.png"
-dest_files=["res://.godot/imported/adventurer-cast-loop-00.png-17035c925a00408c431449b102caa0c3.ctex"]
+source_file="res://assets/Adventurer-1.5/Individual Sprites/adventurer-cast-loop-00.png"
+dest_files=["res://.godot/imported/adventurer-cast-loop-00.png-cc283f38661c54ee90c718ba9d5197fd.ctex"]
 
 [params]
 

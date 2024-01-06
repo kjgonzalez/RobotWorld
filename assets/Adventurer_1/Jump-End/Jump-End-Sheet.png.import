@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://b1dop62ij8uuy"
-path="res://.godot/imported/Jump-End-Sheet.png-e7e6c6a05a2f5dab1a2a0a1789ba410b.ctex"
+path="res://.godot/imported/Jump-End-Sheet.png-242c8e2dd402bae5e534f4945e4d1efc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Art/Legacy-Fantasy - High Forest 2.3/Character/Jump-End/Jump-End-Sheet.png"
-dest_files=["res://.godot/imported/Jump-End-Sheet.png-e7e6c6a05a2f5dab1a2a0a1789ba410b.ctex"]
+source_file="res://assets/Adventurer_1/Jump-End/Jump-End-Sheet.png"
+dest_files=["res://.godot/imported/Jump-End-Sheet.png-242c8e2dd402bae5e534f4945e4d1efc.ctex"]
 
 [params]
 

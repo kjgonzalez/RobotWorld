@@ -1,3 +1,0 @@
-# Godot 4+ specific ignores
-.godot/
-# please make sure you also commit *.import files to git!

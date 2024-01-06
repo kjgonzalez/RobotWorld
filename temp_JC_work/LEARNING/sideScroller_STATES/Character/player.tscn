@@ -420,7 +420,7 @@ states/jump_start/position = Vector2(392, -6)
 states/move/node = SubResource("AnimationNodeBlendSpace1D_bjy5n")
 states/move/position = Vector2(392, 100)
 transitions = ["Start", "move", SubResource("AnimationNodeStateMachineTransition_i4ph4"), "move", "jump_start", SubResource("AnimationNodeStateMachineTransition_2puwh"), "jump_start", "jump_end", SubResource("AnimationNodeStateMachineTransition_50dqq"), "jump_end", "move", SubResource("AnimationNodeStateMachineTransition_3ny4h"), "jump_start", "double_jump", SubResource("AnimationNodeStateMachineTransition_kd0lq"), "double_jump", "jump_end", SubResource("AnimationNodeStateMachineTransition_8aae2"), "move", "attack1", SubResource("AnimationNodeStateMachineTransition_irodt"), "attack1", "attack2", SubResource("AnimationNodeStateMachineTransition_41st3"), "attack2", "move", SubResource("AnimationNodeStateMachineTransition_vwb5b"), "attack1", "move", SubResource("AnimationNodeStateMachineTransition_k5yoi")]
-graph_offset = Vector2(-164, -94)
+graph_offset = Vector2(-131, -20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6ino3"]
 size = Vector2(24, 64)
@@ -434,6 +434,7 @@ position = Vector2(0, 2)
 shape = SubResource("CapsuleShape2D_ry2ya")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(72, 48)
 texture = ExtResource("5_5twvq")
 hframes = 8
 
@@ -464,7 +465,7 @@ jump_animation = "jump_start"
 attack_state = NodePath("../Attack")
 
 [node name="Timer" type="Timer" parent="CharacterStateMachine/Ground"]
-wait_time = 0.05
+wait_time = 2.0
 one_shot = true
 autostart = true
 
@@ -496,6 +497,7 @@ offset_bottom = -32.0
 text = "State: "
 script = ExtResource("11_xtov4")
 state_machine = NodePath("../CharacterStateMachine")
+metadata/_edit_use_anchors_ = true
 
 [node name="Sword" type="Area2D" parent="." node_paths=PackedStringArray("player", "facing_shape")]
 collision_layer = 0
